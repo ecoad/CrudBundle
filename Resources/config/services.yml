@@ -1,7 +1,7 @@
 parameters:
-    hub_news.external_news_provider.class: Hub\NewsBundle\Service\ExternalNewsProvider
+    hub_news.external_news_provider.class: BrowserCreative\CrudBundle\Service\ExternalCrudProvider
 
 services:
-    externalNews.provider:
+    externalCrud.provider:
         class: %hub_news.external_news_provider.class%
         arguments: [@service_container]

@@ -1,6 +1,6 @@
 {% extends "HubSiteBundle:Site:base.html.twig" %}
 
-{% if newsItem.id == '' %}
+{% if item.id == '' %}
     {% set internalTitle = 'Create Internal News Item' %}
 {% else %}
     {% set internalTitle = 'Edit Internal News Item' %}
@@ -10,19 +10,19 @@
 
 {% block content %}
     <h2>{{ internalTitle }}</h2>
-    {% if newsItem.id == '' %}
-        <a href='{{ path('HubNewsBundle_main_index') }}'
+    {% if item.id == '' %}
+        <a href='{{ path('BrowserCreativeCrudBundle_main_index') }}'
             title='Cancel and go back to the news page'>Back to the News</a>
     {% else %}
-        <a href='{{ path('HubNewsBundle_internalnewsitem_view', {'newsItemId': newsItem.id, 
-            'newsItemSubject': newsItem.subject | urlSlugify }) }}'
+        <a href='{{ path('BrowserCreativeCrudBundle_internalnewsitem_view', {'itemId': item.id, 
+            'itemSubject': item.subject | urlSlugify }) }}'
             title='Cancel and view the news item'>Back to the News Item</a>
     {% endif %}
     <form action="
-        {% if newsItem.id == '' %}
-            {{ path('HubNewsBundle_internalnewsitem_new') }}
+        {% if item.id == '' %}
+            {{ path('BrowserCreativeCrudBundle_internalnewsitem_new') }}
         {% else %}
-            {{ path('HubNewsBundle_internalnewsitem_edit', {'newsItemId': newsItem.id}) }}
+            {{ path('BrowserCreativeCrudBundle_internalnewsitem_edit', {'itemId': item.id}) }}
         {% endif %}
     " method="post">
 

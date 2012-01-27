@@ -1,25 +1,25 @@
-HubNewsBundle_main_index:
+BrowserCreativeCrudBundle_main_index:
     pattern:  /
-    defaults: { _controller: HubNewsBundle:Main:index }
+    defaults: { _controller: BrowserCreativeCrudBundle:Main:index }
 
-HubNewsBundle_internalnewsitem_new:
+BrowserCreativeCrudBundle_internalnewsitem_new:
     pattern:  /internal/update/new
-    defaults: { _controller: HubNewsBundle:InternalNewsItem:update }
+    defaults: { _controller: BrowserCreativeCrudBundle:CrudItem:update }
 
-HubNewsBundle_internalnewsitem_edit:
-    pattern:  /internal/update/{newsItemId}
-    defaults: { _controller: HubNewsBundle:InternalNewsItem:update }
+BrowserCreativeCrudBundle_internalnewsitem_edit:
+    pattern:  /internal/update/{itemId}
+    defaults: { _controller: BrowserCreativeCrudBundle:CrudItem:update }
     requirements:
-        newsItemId:  \d+
+        itemId:  \d+
 
-HubNewsBundle_internalnewsitem_delete:
-    pattern:  /internal/delete/{newsItemId}
-    defaults: { _controller: HubNewsBundle:InternalNewsItem:delete }
+BrowserCreativeCrudBundle_internalnewsitem_delete:
+    pattern:  /internal/delete/{itemId}
+    defaults: { _controller: BrowserCreativeCrudBundle:CrudItem:delete }
     requirements:
-        newsItemId:  \d+
+        itemId:  \d+
 
-HubNewsBundle_internalnewsitem_view:
-    pattern:  /internal/{newsItemId}/{newsItemSubject}
-    defaults: { _controller: HubNewsBundle:InternalNewsItem:view }
+BrowserCreativeCrudBundle_internalnewsitem_view:
+    pattern:  /internal/{itemId}/{itemSubject}
+    defaults: { _controller: BrowserCreativeCrudBundle:CrudItem:view }
     requirements:
-        newsItemId:  \d+
+        itemId:  \d+

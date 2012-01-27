@@ -1,20 +1,20 @@
 {% extends "HubSiteBundle:Site:base.html.twig" %}
 
-{% set internalTitle = newsItem.subject %}
+{% set internalTitle = item.subject %}
 
 {% block pageTitle %}{{ internalTitle }}{% endblock %}
 
 {% block content %}
-    <a href="{{ path('HubNewsBundle_main_index') }}">Back to the News</a>
+    <a href="{{ path('BrowserCreativeCrudBundle_main_index') }}">Back to the News</a>
     <h2>{{ internalTitle }}</h2>
-    {{ newsItem.body | raw }}
+    {{ item.body | raw }}
 
     {% if app.security.isGranted('ROLE_ADMIN') %}
-        <a href="{{ path('HubNewsBundle_internalnewsitem_edit', {'newsItemId': newsItem.id}) }}">Edit</a>
+        <a href="{{ path('BrowserCreativeCrudBundle_internalnewsitem_edit', {'itemId': item.id}) }}">Edit</a>
         <a onclick='return confirm("Are you sure?")?  true : false;'
-            href='{{ path('HubNewsBundle_internalnewsitem_delete', {
-                'newsItemId' : newsItem.id, 
-                'returnRoute': 'HubNewsBundle_main_index'
+            href='{{ path('BrowserCreativeCrudBundle_internalnewsitem_delete', {
+                'itemId' : item.id, 
+                'returnRoute': 'BrowserCreativeCrudBundle_main_index'
             }) }}' title='Delete this news item'>
             Delete
         </a>

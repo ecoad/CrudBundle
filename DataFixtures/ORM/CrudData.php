@@ -5,7 +5,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Hub\UserBundle\Entity\User;
-use Hub\NewsBundle\Entity\InternalNewsItem;
+use Hub\NewsBundle\Entity\CrudItem;
 
 class LoadNewsData implements FixtureInterface, ContainerAwareInterface {
     private $container;
@@ -26,7 +26,7 @@ class LoadNewsData implements FixtureInterface, ContainerAwareInterface {
         $user = $userProvider->loadUserByUsername('elliotcoad');
 
         for ($i = 0; $i < 20; $i++) {
-            $internalNewsItem = new InternalNewsItem();
+            $internalNewsItem = new CrudItem();
             $internalNewsItem->setSubject('Octavia Launches The Hub!');
             $internalNewsItem->setBody('<p>Octavia Housing have been shortlisted to win an award for the &lsquo;Most Innovative Community Engagement&rsquo; programme.</p>
     <p>The award, run by <a href="http://www.housingexcellence.co.uk/">Housing Excellence</a>, recognises social housing providers and community groups who put residents at the heart of everything they do. Octavia operates a large and inventive resident involvement programme as well as a number of wider-reaching community liaison schemes through their related charity, the Octavia Foundation.</p>

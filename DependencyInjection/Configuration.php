@@ -1,6 +1,6 @@
 <?php
 
-namespace Hub\NewsBundle\DependencyInjection;
+namespace BrowserCreative\CrudBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

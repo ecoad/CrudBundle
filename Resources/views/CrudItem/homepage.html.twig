@@ -5,17 +5,17 @@
 			{% for internalNewsItem in internalNewsItems %}
 				<li>
 					<h4>
-						<a href="{{ path('HubNewsBundle_internalnewsitem_view', {'newsItemId': internalNewsItem.id,
-							'newsItemSubject': internalNewsItem.subject | urlSlugify}) }}">
+						<a href="{{ path('BrowserCreativeCrudBundle_internalnewsitem_view', {'itemId': internalNewsItem.id,
+							'itemSubject': internalNewsItem.subject | urlSlugify}) }}">
 							{{ internalNewsItem.subject }}
 						</a>
 					</h4>
 					{% if app.security.isGranted('ROLE_ADMIN') %}
-						<a href="{{ path('HubNewsBundle_internalnewsitem_edit', {'newsItemId': internalNewsItem.id}) }}">Edit</a>
+						<a href="{{ path('BrowserCreativeCrudBundle_internalnewsitem_edit', {'itemId': internalNewsItem.id}) }}">Edit</a>
 						<a onclick='return confirm("Are you sure?")?  true : false;'
-							href='{{ path('HubNewsBundle_internalnewsitem_delete', {
-								'newsItemId' : internalNewsItem.id,
-								'returnRoute': 'HubNewsBundle_main_index'
+							href='{{ path('BrowserCreativeCrudBundle_internalnewsitem_delete', {
+								'itemId' : internalNewsItem.id,
+								'returnRoute': 'BrowserCreativeCrudBundle_main_index'
 							}) }}' title='Delete this message'>
 							Delete
 						</a>

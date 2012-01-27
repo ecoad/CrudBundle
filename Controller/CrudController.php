@@ -5,94 +5,85 @@ namespace Hub\NewsBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Hub\NewsItem\Entity\InternalNewsItem;
-use Hub\NewsItem\Form\Type\InternalNewsItemType;
+use Hub\NewsItem\Entity\CrudItem;
+use Hub\NewsItem\Form\Type\CrudItemType;
 
-class InternalNewsItemController extends Controller
+class CrudItemController extends Controller
 {
-    public function viewAction($newsItemId)
+    public function indexAction()
     {
-        $entityManager = $this->get('doctrine.orm.entity_manager');
-        $repository = $entityManager->getRepository('HubNewsBundle:InternalNewsItem');
+        $items = $this->get('doctrine.orm.entity_manager')->getRepository('BrowserCreativeCrudBundle:CrudItem')
+            ->getLatestActiveNewsItemsQueryBuilder();
 
-        if (!$newsItem = $repository->findOneById($newsItemId)) {
-            throw new NotFoundHttpException('News Item not found');
-        }
+        $paginator = $this->get('knp_paginator');
+        $pageLength = 20;
+        $paginationItems = $paginator->paginate($items->getQuery(), $this->getRequest()->get('page', 1), $pageLength);
 
-        return $this->render('HubNewsBundle:InternalNewsItem:view.html.twig', array(
-            'newsItem' => $newsItem
+        return $this->render('BrowserCreativeCrudBundle:CrudItem:homepage.html.twig', array(
+            'items' => $paginationItems
         ));
     }
 
-    public function homepageAction()
+    public function viewAction($itemId)
     {
-        $memcachedManager = $this->get('synth_memcached');
-        $memcachedKey = 'InternalNews_homepage';
-        if (!$output = $memcachedManager->get($memcachedKey)) {
+        $entityManager = $this->get('doctrine.orm.entity_manager');
+        $repository = $entityManager->getRepository('BrowserCreativeCrudBundle:CrudItem');
 
-            $latestInternalNews = $this->get('doctrine.orm.entity_manager')->getRepository('HubNewsBundle:InternalNewsItem')
-                ->getLatestActiveNewsItemsQueryBuilder();
-
-            $paginator = $this->get('knp_paginator');
-            $internalNewsItems = $paginator->paginate($latestInternalNews->getQuery(), 1, 3);
-
-            $output = $this->render('HubNewsBundle:InternalNewsItem:homepage.html.twig', array(
-                'internalNewsItems' => $internalNewsItems
-            ));
-
-            $memcachedManager->set($memcachedKey, $output, "InternalNews", 3600);
+        if (!$item = $repository->findOneById($itemId)) {
+            throw new NotFoundHttpException('Item not found');
         }
 
-        return $output;
+        return $this->render('BrowserCreativeCrudBundle:CrudItem:view.html.twig', array(
+            'item' => $item
+        ));
     }
 
-    public function updateAction($newsItemId = null)
+    public function updateAction($itemId = null)
     {
         if (!$user = $this->container->get('security.context')->getToken()->getUser()) {
             throw new AuthenticationException('User must be logged in to reply');
         }
 
         $entityManager = $this->get('doctrine.orm.entity_manager');
-        $repository = $entityManager->getRepository('HubNewsBundle:InternalNewsItem');
+        $repository = $entityManager->getRepository('BrowserCreativeCrudBundle:CrudItem');
 
-        if ($newsItemId) {
-            if (!$newsItem = $repository->findOneById($newsItemId)) {
-                throw new NotFoundHttpException('News Item not found');
+        if ($itemId) {
+            if (!$item = $repository->findOneById($itemId)) {
+                throw new NotFoundHttpException('Item not found');
             }
         } else {
-            $newsItem = new InternalNewsItem();
-            $newsItem->setAuthor($user);
+            $item = new CrudItem();
+            $item->setAuthor($user);
         }
 
-        $formBuilder = $this->createFormBuilder($newsItem)
+        $formBuilder = $this->createFormBuilder($item)
             ->add('body', 'textarea', array('error_bubbling' => true))
             ->add('subject', 'text', array('error_bubbling' => true))
             ->add('visible', 'checkbox', array('error_bubbling' => false, 'required' => false));
         $form = $formBuilder->getForm();
 
-        if ($this->getRequest()->getMethod() == strtoupper('post')) {
+        if ($this->getRequest()->getMethod() == 'POST') {
             $form->bindRequest($this->getRequest());
 
             if ($form->isValid()) {
-                $entityManager->persist($newsItem);
+                $entityManager->persist($item);
                 $entityManager->flush();
             }
 
-            return $this->redirect($this->generateUrl('HubNewsBundle_internalnewsitem_view',
+            return $this->redirect($this->generateUrl('BrowserCreativeCrudBundle_internalnewsitem_view',
                 array(
-                    'newsItemId' => $newsItem->getId(),
-                    'newsItemSubject' => $this->get('site.twig.extension')->urlSlugify($newsItem->getSubject())
-                ))
+                    'itemId' => $item->getId())
+                )
             );
         }
 
-        return $this->render('HubNewsBundle:InternalNewsItem:update.html.twig', array(
+        return $this->render('BrowserCreativeCrudBundle:CrudItem:update.html.twig', array(
             'form' => $form->createView(),
-            'newsItem' => $newsItem
+            'item' => $item
         ));
     }
 
-    public function deleteAction($newsItemId)
+    public function deleteAction($itemId)
     {
         if (!$user = $this->container->get('security.context')->getToken()->getUser()) {
             throw new AuthenticationException('User must be logged in to delete news item');
@@ -103,13 +94,13 @@ class InternalNewsItemController extends Controller
         }
 
         $entityManager = $this->get('doctrine.orm.entity_manager');
-        $repository = $entityManager->getRepository('HubNewsBundle:InternalNewsItem');
+        $repository = $entityManager->getRepository('BrowserCreativeCrudBundle:CrudItem');
 
-        if (!$newsItem = $repository->findOneById($newsItemId)) {
+        if (!$item = $repository->findOneById($itemId)) {
             throw new NotFoundHttpException('News Item not found');
         }
 
-        $entityManager->remove($newsItem);
+        $entityManager->remove($item);
 
         $url = $this->generateUrl(
             $this->getRequest()->get('returnRoute'), $this->getRequest()->get('returnRouteParams', array()));
