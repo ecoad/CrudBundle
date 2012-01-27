@@ -1,0 +1,23 @@
+<div id="widget-external-news" class="widget">
+	<div class="inside">
+		<h3 class="title">External News</h3>
+		{% if octaviaHousingNews  %}
+			<ul>
+				{% for octaviaHousingNewsItem in octaviaHousingNews %}
+					<li>
+						<h4>
+							<a href="{{ octaviaHousingNewsItem.url }}">
+								{{ getTruncated(octaviaHousingNewsItem.title, 50, '&hellip;') | raw }}
+							</a>
+						</h4>
+						{{ getTruncated(octaviaHousingNewsItem.body, 250, '&hellip;') | raw }}
+						{{ octaviaHousingNewsItem.dateCreated | date('Y-m-d H:i') }}
+					</li>
+				{% endfor %}
+			</ul>
+		{% else  %}
+			<span class="external-news-unavailable">External news is currently unavailable</span>
+		{% endif  %}
+		<a href="http://octaviahousing.org.uk/about-us/news/" title="Visit the website">Visit the website</a>
+	</div>
+</div>

@@ -1,0 +1,28 @@
+<div id="widget-internal-news" class="widget">
+	<div class="inside">
+		<h3 class="title">Internal News</h3>
+		<ul>
+			{% for internalNewsItem in internalNewsItems %}
+				<li>
+					<h4>
+						<a href="{{ path('HubNewsBundle_internalnewsitem_view', {'newsItemId': internalNewsItem.id,
+							'newsItemSubject': internalNewsItem.subject | urlSlugify}) }}">
+							{{ internalNewsItem.subject }}
+						</a>
+					</h4>
+					{% if app.security.isGranted('ROLE_ADMIN') %}
+						<a href="{{ path('HubNewsBundle_internalnewsitem_edit', {'newsItemId': internalNewsItem.id}) }}">Edit</a>
+						<a onclick='return confirm("Are you sure?")?  true : false;'
+							href='{{ path('HubNewsBundle_internalnewsitem_delete', {
+								'newsItemId' : internalNewsItem.id,
+								'returnRoute': 'HubNewsBundle_main_index'
+							}) }}' title='Delete this message'>
+							Delete
+						</a>
+					{% endif %}
+					{{ internalNewsItem.body | raw }}
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>

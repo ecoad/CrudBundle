@@ -1,0 +1,25 @@
+HubNewsBundle_main_index:
+    pattern:  /
+    defaults: { _controller: HubNewsBundle:Main:index }
+
+HubNewsBundle_internalnewsitem_new:
+    pattern:  /internal/update/new
+    defaults: { _controller: HubNewsBundle:InternalNewsItem:update }
+
+HubNewsBundle_internalnewsitem_edit:
+    pattern:  /internal/update/{newsItemId}
+    defaults: { _controller: HubNewsBundle:InternalNewsItem:update }
+    requirements:
+        newsItemId:  \d+
+
+HubNewsBundle_internalnewsitem_delete:
+    pattern:  /internal/delete/{newsItemId}
+    defaults: { _controller: HubNewsBundle:InternalNewsItem:delete }
+    requirements:
+        newsItemId:  \d+
+
+HubNewsBundle_internalnewsitem_view:
+    pattern:  /internal/{newsItemId}/{newsItemSubject}
+    defaults: { _controller: HubNewsBundle:InternalNewsItem:view }
+    requirements:
+        newsItemId:  \d+

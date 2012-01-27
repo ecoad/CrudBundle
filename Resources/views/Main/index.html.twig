@@ -1,0 +1,59 @@
+{% extends "HubSiteBundle:Site:base.html.twig" %}
+
+{% set internalTitle = 'News' %}
+
+{% block pageTitle %}{{ internalTitle }}{% endblock %}
+
+{% block content %}
+    <h2>{{ internalTitle }}</h2>
+    This is the news
+
+    <h3>Internal News</h3>
+    <ul>
+        {% for internalNewsItem in internalNews %}
+            <li>
+                <h4>
+                    <a href="{{ path('HubNewsBundle_internalnewsitem_view', {'newsItemId': internalNewsItem.id,
+                        'newsItemSubject': internalNewsItem.subject | urlSlugify}) }}">
+                        {{ internalNewsItem.subject }}
+                    </a>
+                </h4>
+                {% if app.security.isGranted('ROLE_ADMIN') %}
+                    <a href="{{ path('HubNewsBundle_internalnewsitem_edit', {'newsItemId': internalNewsItem.id}) }}">Edit</a>
+                    <a onclick='return confirm("Are you sure?")?  true : false;'
+                        href='{{ path('HubNewsBundle_internalnewsitem_delete', {
+                            'newsItemId' : internalNewsItem.id, 
+                            'returnRoute': 'HubNewsBundle_main_index'
+                        }) }}' title='Delete this message'>
+                        Delete
+                    </a>
+                {% endif %}
+                {{ internalNewsItem.body | raw }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div class="pagination">
+        {{ internalNews.render() | raw }}
+    </div>
+
+    <h3>External News</h3>
+    {% if octaviaHousingNews  %}
+        <ul>
+            {% for octaviaHousingNewsItem in octaviaHousingNews %}
+                <li>
+                    <h4>
+                        <a href="{{ octaviaHousingNewsItem.url }}">
+                            {{ getTruncated(octaviaHousingNewsItem.title, 50, '&hellip;') | raw }}
+                        </a>
+                    </h4>
+                    {{ getTruncated(octaviaHousingNewsItem.body, 250, '&hellip;') | raw }}
+                    {{ octaviaHousingNewsItem.dateCreated | date('Y-m-d H:i') }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else  %}
+        <span class="external-news-unavailable">External news is currently unavailable</span>
+    {% endif  %}
+    <a href="http://octaviahousing.org.uk/about-us/news/" title="Visit the website">Visit the website</a>
+{% endblock %}
