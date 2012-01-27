@@ -2,6 +2,7 @@ CrudBundle
 ##########
 
 Do your bundles start life with the following?:
+
 *    Entity attributes with getters and setters for Id, Title, Body, DateCreated, Author(User), LastModified, Image. 
 *    Controllers and views that create, read, update and destroy.
 *    Basic validation
