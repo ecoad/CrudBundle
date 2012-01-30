@@ -107,6 +107,7 @@ class CrudItemController extends Controller
         }
 
         $entityManager->remove($item);
+        $entityManager->flush();
 
         $url = $this->generateUrl(
             $this->getRequest()->get('returnRoute'), $this->getRequest()->get('returnRouteParams', array()));
