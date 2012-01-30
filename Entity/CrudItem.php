@@ -4,6 +4,8 @@ namespace BrowserCreative\CrudBundle\Entity;
 
 use Hub\UserBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use \Datetime;
 
 /**
  * BrowserCreative\CrudBundle\Entity\CrudItem
@@ -52,18 +54,51 @@ class CrudItem
     private $author;
 
     /**
-     * @var boolean $visible
+     * @var boolean $active
      *
-     * @ORM\Column(name="visible", type="boolean")
+     * @ORM\Column(name="active", type="boolean")
      */
-    private $visible;
+    private $active;
+
+    /**
+     * @var datetimetz $start_date
+     *
+     * @ORM\Column(name="start_date", type="datetimetz", nullable=true)
+     */
+    private $start_date;
+
+    /**
+     * @var datetimetz $end_date
+     *
+     * @ORM\Column(name="end_date", type="datetimetz", nullable=true)
+     */
+    private $end_date;
+
+    /**
+     * @ORM\Column(name="image_path", type="string", nullable=true)
+     */
+    public $imagePath;
+
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    public $imageFile;
+
+    /**
+     * @ORM\Column(name="attachment_path", type="string", nullable=true)
+     */
+    public $attachmentPath;
+
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    public $attachmentFile;
 
     public function __construct()
     {
         $this->setDateCreated(new \DateTime());
-        $this->setVisible(false);
+        $this->setActive(false);
     }
-
 
     /**
      * Get id
@@ -156,22 +191,102 @@ class CrudItem
     }
 
     /**
-     * Set visible
+     * Set active
      *
-     * @param boolean $visible
+     * @param boolean $active
      */
-    public function setVisible($visible)
+    public function setActive($active)
     {
-        $this->visible = $visible;
+        $this->active = $active;
     }
 
     /**
-     * Get visible
+     * Get active
      *
      * @return boolean 
      */
-    public function getVisible()
+    public function getActive()
     {
-        return $this->visible;
+        return $this->active;
+    }
+
+    /**
+     * Set $start_date
+     *
+     * @param Datetime $start_date
+     */
+    public function setStartDate(DateTime $start_date)
+    {
+        $this->start_date = $start_date;
+    }
+
+    /**
+     * Get $start_date
+     *
+     * @return Datetime
+     */
+    public function getStartDate()
+    {
+        return $this->start_date;
+    }
+
+    /**
+     * Set $end_date
+     *
+     * @param Datetime $end_date
+     */
+    public function setEndDate(DateTime $end_date)
+    {
+        $this->end_date = $end_date;
+    }
+
+    /**
+     * Get $end_date
+     *
+     * @return Datetime
+     */
+    public function getEndDate()
+    {
+        return $this->end_date;
+    }
+
+    /**
+     * Set image_path
+     *
+     * @param string $image_path
+     */
+    public function setImagePath($image_path)
+    {
+        $this->image_path = $image_path;
+    }
+
+    /**
+     * Get image_path
+     *
+     * @return boolean 
+     */
+    public function getImagePath()
+    {
+        return $this->image_path;
+    }
+
+    /**
+     * Set attachment_path
+     *
+     * @param string $attachment_path
+     */
+    public function setAttachmentPath($attachment_path)
+    {
+        $this->attachment_path = $attachment_path;
+    }
+
+    /**
+     * Get attachment_path
+     *
+     * @return boolean 
+     */
+    public function getAttachmentPath()
+    {
+        return $this->attachment_path;
     }
 }
