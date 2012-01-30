@@ -1,6 +1,6 @@
-BrowserCreativeCrudBundle_main_index:
+BrowserCreativeCrudBundle_CrudItem_index:
     pattern:  /
-    defaults: { _controller: BrowserCreativeCrudBundle:Main:index }
+    defaults: { _controller: BrowserCreativeCrudBundle:CrudItem:index }
 
 BrowserCreativeCrudBundle_CrudItem_new:
     pattern:  /update/new

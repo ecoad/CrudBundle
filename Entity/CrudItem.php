@@ -1,15 +1,15 @@
 <?php
 
-namespace Hub\NewsBundle\Entity;
+namespace BrowserCreative\CrudBundle\Entity;
 
 use Hub\UserBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Hub\NewsBundle\Entity\CrudItem
+ * BrowserCreative\CrudBundle\Entity\CrudItem
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Hub\NewsBundle\Entity\CrudItemRepository")
+ * @ORM\Entity(repositoryClass="BrowserCreative\CrudBundle\Entity\CrudItemRepository")
  */
 class CrudItem
 {

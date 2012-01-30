@@ -1,6 +1,6 @@
 <?php
 
-namespace Hub\NewsBundle\Controller;
+namespace BrowserCreative\CrudBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;

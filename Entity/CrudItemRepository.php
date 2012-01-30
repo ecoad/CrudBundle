@@ -1,6 +1,6 @@
 <?php
 
-namespace Hub\NewsBundle\Entity;
+namespace BrowserCreative\CrudBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 

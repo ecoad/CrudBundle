@@ -1,11 +1,11 @@
 <?php
-namespace Hub\NewsBundle\DataFixtures\ORM;
+namespace BrowserCreative\CrudBundle\DataFixtures\ORM;
 
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Hub\UserBundle\Entity\User;
-use Hub\NewsBundle\Entity\CrudItem;
+use BrowserCreative\CrudBundle\Entity\CrudItem;
 
 class LoadNewsData implements FixtureInterface, ContainerAwareInterface {
     private $container;

@@ -1,5 +1,5 @@
 <?php
-namespace Hub\NewsBundle\Service;
+namespace BrowserCreative\CrudBundle\Service;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
