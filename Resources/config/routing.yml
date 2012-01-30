@@ -2,24 +2,24 @@ BrowserCreativeCrudBundle_main_index:
     pattern:  /
     defaults: { _controller: BrowserCreativeCrudBundle:Main:index }
 
-BrowserCreativeCrudBundle_internalnewsitem_new:
-    pattern:  /internal/update/new
+BrowserCreativeCrudBundle_CrudItem_new:
+    pattern:  /update/new
     defaults: { _controller: BrowserCreativeCrudBundle:CrudItem:update }
 
-BrowserCreativeCrudBundle_internalnewsitem_edit:
-    pattern:  /internal/update/{itemId}
+BrowserCreativeCrudBundle_CrudItem_edit:
+    pattern:  /update/{itemId}
     defaults: { _controller: BrowserCreativeCrudBundle:CrudItem:update }
     requirements:
         itemId:  \d+
 
-BrowserCreativeCrudBundle_internalnewsitem_delete:
-    pattern:  /internal/delete/{itemId}
+BrowserCreativeCrudBundle_CrudItem_delete:
+    pattern:  /delete/{itemId}
     defaults: { _controller: BrowserCreativeCrudBundle:CrudItem:delete }
     requirements:
         itemId:  \d+
 
-BrowserCreativeCrudBundle_internalnewsitem_view:
-    pattern:  /internal/{itemId}/{itemSubject}
+BrowserCreativeCrudBundle_CrudItem_view:
+    pattern:  /{itemId}/{itemSubject}
     defaults: { _controller: BrowserCreativeCrudBundle:CrudItem:view }
     requirements:
         itemId:  \d+

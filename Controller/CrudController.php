@@ -19,7 +19,7 @@ class CrudItemController extends Controller
         $pageLength = 20;
         $paginationItems = $paginator->paginate($items, $this->getRequest()->get('page', 1), $pageLength);
 
-        return $this->render('BrowserCreativeCrudBundle:CrudItem:homepage.html.twig', array(
+        return $this->render('BrowserCreativeCrudBundle:CrudItem:index.html.twig', array(
             'items' => $paginationItems
         ));
     }

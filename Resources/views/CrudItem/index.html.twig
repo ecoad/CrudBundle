@@ -1,0 +1,32 @@
+{% extends "::base.html.twig" %}
+
+{% block pageTitle %}Index{% endblock %}
+
+{% block content %}
+	<ul>
+		{% for item in items %}
+			<li>
+				<h4>
+					<a href="{{ path('BrowserCreativeCrudBundle_CrudItem_view', {'itemId': item.id,
+						'itemSubject': item.subject | urlSlugify }) }}">
+						{{ item.subject }}
+					</a>
+				</h4>
+				{% if app.security.isGranted('ROLE_ADMIN') %}
+					<a href="{{ path('BrowserCreativeCrudBundle_CrudItem_edit', {'itemId': item.id}) }}">Edit</a>
+					<a onclick='return confirm("Are you sure?")?  true : false;'
+						href='{{ path('BrowserCreativeCrudBundle_CrudItem_delete', {
+							'itemId' : item.id,
+							'returnRoute': 'BrowserCreativeCrudBundle_CrudItem_index'
+						}) }}' title='Delete this message'>
+						Delete
+					</a>
+				{% endif %}
+				{{ item.body | raw }}
+			</li>
+		{% endfor %}
+	</ul>
+	<div class="pagination">
+		{{ internalNews.render() | raw }}
+	</div>
+{% endblock %}
