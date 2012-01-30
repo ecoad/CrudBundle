@@ -1,6 +1,6 @@
 <?php
 
-namespace Hub\NewsBundle;
+namespace BrowserCreative\CrudBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
