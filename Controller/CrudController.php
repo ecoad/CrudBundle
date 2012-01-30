@@ -41,7 +41,7 @@ class CrudItemController extends Controller
     public function updateAction($itemId = null)
     {
         if (!$user = $this->container->get('security.context')->getToken()->getUser()) {
-            throw new AuthenticationException('User must be logged in to reply');
+            throw new AuthenticationException('User must be logged in');
         }
 
         $entityManager = $this->get('doctrine.orm.entity_manager');
@@ -70,8 +70,7 @@ class CrudItemController extends Controller
                 $entityManager->flush();
             }
 
-            return $this->redirect($this->generateUrl('BrowserCreativeCrudBundle_internalnewsitem_view',
-                array(
+            return $this->redirect($this->generateUrl('BrowserCreativeCrudBundle_crud_view', array(
                     'itemId' => $item->getId())
                 )
             );
