@@ -12,11 +12,11 @@
     <h2>{{ internalTitle }}</h2>
     {% if item.id == '' %}
         <a href='{{ path('BrowserCreativeCrudBundle_CrudItem_index') }}'
-            title='Cancel and go back to the news page'>Back to the News</a>
+            title='Cancel and go back to the news page'>Back to the list</a>
     {% else %}
         <a href='{{ path('BrowserCreativeCrudBundle_CrudItem_view', {'itemId': item.id, 
             'itemSubject': item.subject | urlSlugify }) }}'
-            title='Cancel and view the news item'>Back to the News Item</a>
+            title='Cancel and view the news item'>Back to the item</a>
     {% endif %}
     <form action="
         {% if item.id == '' %}

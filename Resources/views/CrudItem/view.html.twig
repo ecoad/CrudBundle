@@ -5,7 +5,7 @@
 {% block pageTitle %}{{ internalTitle }}{% endblock %}
 
 {% block content %}
-    <a href="{{ path('BrowserCreativeCrudBundle_CrudItem_index') }}">Back to the News</a>
+    <a href="{{ path('BrowserCreativeCrudBundle_CrudItem_index') }}">Back to the list</a>
     <h2>{{ internalTitle }}</h2>
     {{ item.body | raw }}
 
@@ -15,7 +15,7 @@
             href='{{ path('BrowserCreativeCrudBundle_CrudItem_delete', {
                 'itemId' : item.id, 
                 'returnRoute': 'BrowserCreativeCrudBundle_CrudItem_index'
-            }) }}' title='Delete this news item'>
+            }) }}' title='Delete this item'>
             Delete
         </a>
     {% endif %}

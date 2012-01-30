@@ -5,8 +5,8 @@ namespace BrowserCreative\CrudBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use BrowserCreative\CrudItem\Entity\CrudItem;
-use BrowserCreative\CrudItem\Form\Type\CrudItemType;
+use BrowserCreative\CrudBundle\Entity\CrudItem;
+use BrowserCreative\CrudBundle\Form\Type\CrudItemType;
 
 class CrudItemController extends Controller
 {
@@ -76,9 +76,10 @@ class CrudItemController extends Controller
                 $entityManager->flush();
             }
 
-            return $this->redirect($this->generateUrl('BrowserCreativeCrudBundle_crud_view', array(
-                    'itemId' => $item->getId())
-                )
+            return $this->redirect($this->generateUrl('BrowserCreativeCrudBundle_CrudItem_view', array(
+                    'itemId' => $item->getId(), 
+                    'itemSubject' => $this->get('site.twig.extension')->urlSlugify($item->getSubject()
+                )))
             );
         }
 
