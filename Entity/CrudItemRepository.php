@@ -12,10 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class CrudItemRepository extends EntityRepository
 {
-    public function getLatestActiveNewsItemsQueryBuilder()
+    public function getLatestActiveItems()
     {
-        $queryBuilder = $this->createQueryBuilder('n')
-            ->add('orderBy', 'n.date_created DESC');
+        $queryBuilder = $this->createQueryBuilder('c')
+            ->add('where', 'c.active :active')
+            ->add('orderBy', 'c.date_created DESC')
+            ->setParameter(':active', true);
 
         return $queryBuilder;
     }

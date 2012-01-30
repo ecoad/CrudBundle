@@ -17,11 +17,7 @@ class LoadNewsData implements FixtureInterface, ContainerAwareInterface {
 
     public function load($manager)
     {
-        $this->loadInternalNews($manager);
-    }
-
-    public function loadInternalNews($manager)
-    {
+        /*
         $userProvider = $this->container->get('user.provider');
         $user = $userProvider->loadUserByUsername('elliotcoad');
 
@@ -43,5 +39,6 @@ class LoadNewsData implements FixtureInterface, ContainerAwareInterface {
 
 
         $manager->flush();
+        */
     }
 }
