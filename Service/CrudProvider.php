@@ -18,20 +18,12 @@ class CrudProvider {
 
     public function moveFile(CrudItem $item, UploadedFile $file, $fileProperty = 'imagePath')
     {
+        $desinationFolder = $this->container->getParameter('kernel.root_dir') . '/../web/' .$this->container->getParameter('site.uploadfolder');
+        $filename = uniqid() . '_' . preg_replace("/[^a-zA-Z0-9.\/_|+ -]/", '', $file->getClientOriginalName());
 
-        //TODO: Filename sanitise
-        //TODO: Hash folder
+        $file->move($desinationFolder, $filename);
 
-        // move takes the target directory and then the target filename to move to
-        // ls
-        $file->move($this->container->getParameter('kernel.root_dir') . '/../web/' .$this->container->getParameter('site.uploadfolder'), 
-            $file->getClientOriginalName());
-
-        //$fileSetter = 'set' . ucfirst($fileProperty);
-
-        //$item->$fileSetter($file->getClientOriginalName());
-        $item->image_path = $file->getClientOriginalName();
-
-        $file = null;
+        $fileSetter = 'set' . ucfirst($fileProperty);
+        $item->$fileSetter($filename);
     }
 }

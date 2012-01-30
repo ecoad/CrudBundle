@@ -72,6 +72,9 @@ class CrudItemController extends Controller
                     $this->get('crud.provider')->moveFile($item, $item->getImageFile(), 'imagePath');
                 }
 
+                if ($item->getAttachmentFile()) {
+                    $this->get('crud.provider')->moveFile($item, $item->getAttachmentFile(), 'attachmentPath');
+                }
                 $entityManager->persist($item);
                 $entityManager->flush();
 

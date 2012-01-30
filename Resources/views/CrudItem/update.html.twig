@@ -31,9 +31,21 @@
         {{ form_row(form.body) }}
 
         {% if item.imagePath != '' %}
-            Current image:<br />
-            <img src='{{ getFileUploadWebPath(item.imagePath) | apply_filter('profile_edit') }}' alt="Image"/>
+            Current image:
+            <img src='{{ getFileUploadWebPath(item.imagePath) | apply_filter('profile_edit') }}' alt="Image"/> <br />
         {% endif %}
+
+        {{ form_label(form.imageFile, 'Image') }}
+        {{ form_errors(form.imageFile) }}
+        {{ form_widget(form.imageFile) }}
+
+        {% if item.attachmentPath != '' %}
+            Current attachment: <a href='{{ getFileUploadWebPath(item.attachmentPath) }}' title="Attachment">Attachment</a> <br />
+        {% endif %}
+
+        {{ form_label(form.attachmentFile, 'Attachment') }}
+        {{ form_errors(form.attachmentFile) }}
+        {{ form_widget(form.attachmentFile) }}
 
         {{ form_label(form.startDate, 'Start Date') }}
         {{ form_errors(form.startDate) }}
@@ -42,8 +54,6 @@
         {{ form_label(form.endDate, 'End Date') }}
         {{ form_errors(form.endDate) }}
         {{ form_widget(form.endDate) }}
-
-        {{ form_row(form.imageFile) }}
 
         {{ form_rest(form) }}
 

@@ -311,4 +311,24 @@ class CrudItem
         $this->image_file = $image_file;
     }
 
+    /**
+     * Get attachment_file
+     *
+     * @return UploadedFile 
+     */
+    public function getAttachmentFile()
+    {
+        return $this->attachment_file;
+    }
+
+    /**
+     * Set attachment_file
+     *
+     * @param UploadedFile $attachment_file
+     */
+    public function setAttachmentFile(UploadedFile $attachment_file)
+    {
+        $this->attachment_file = $attachment_file;
+    }
+
 }

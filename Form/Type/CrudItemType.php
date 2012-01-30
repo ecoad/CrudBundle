@@ -12,8 +12,8 @@ class CrudItemType extends AbstractType
             ->add('subject', 'text', array('error_bubbling' => true))
             ->add('body', 'textarea', array('error_bubbling' => true))
             ->add('active', 'checkbox', array('error_bubbling' => true, 'required' => false))
-            ->add('imageFile', 'file', array('error_bubbling' => false, 'required' => false))
-            //->add('attachmentFile', 'file', array('error_bubbling' => true, 'required' => false))
+            ->add('imageFile', 'file', array('error_bubbling' => true, 'required' => false))
+            ->add('attachmentFile', 'file', array('error_bubbling' => true, 'required' => false))
             ->add('startDate', 'datetime', array('error_bubbling' => true, 'required' => false))
             ->add('endDate', 'datetime', array('error_bubbling' => true, 'required' => false));
     }
