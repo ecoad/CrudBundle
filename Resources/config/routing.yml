@@ -3,11 +3,11 @@ BrowserCreativeCrudBundle_CrudItem_index:
     defaults: { _controller: BrowserCreativeCrudBundle:CrudItem:index }
 
 BrowserCreativeCrudBundle_CrudItem_new:
-    pattern:  /update/new
+    pattern:  /new
     defaults: { _controller: BrowserCreativeCrudBundle:CrudItem:update }
 
 BrowserCreativeCrudBundle_CrudItem_edit:
-    pattern:  /update/{itemId}
+    pattern:  /edit/{itemId}
     defaults: { _controller: BrowserCreativeCrudBundle:CrudItem:update }
     requirements:
         itemId:  \d+

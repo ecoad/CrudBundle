@@ -62,25 +62,25 @@ class CrudItemController extends Controller
             $item->setAuthor($user);
         }
 
-        $formBuilder = $this->createFormBuilder($item)
-            ->add('body', 'textarea', array('error_bubbling' => true))
-            ->add('subject', 'text', array('error_bubbling' => true))
-            ->add('visible', 'checkbox', array('error_bubbling' => false, 'required' => false));
-        $form = $formBuilder->getForm();
+        $form = $this->createForm(new CrudItemType(), $item);
 
         if ($this->getRequest()->getMethod() == 'POST') {
             $form->bindRequest($this->getRequest());
 
             if ($form->isValid()) {
+                if ($item->getImageFile()) {
+                    $this->get('crud.provider')->moveFile($item, $item->getImageFile(), 'imagePath');
+                }
+
                 $entityManager->persist($item);
                 $entityManager->flush();
-            }
 
-            return $this->redirect($this->generateUrl('BrowserCreativeCrudBundle_CrudItem_view', array(
+                return $this->redirect($this->generateUrl('BrowserCreativeCrudBundle_CrudItem_view', array(
                     'itemId' => $item->getId(), 
                     'itemSubject' => $this->get('site.twig.extension')->urlSlugify($item->getSubject()
-                )))
-            );
+                ))));
+            }
+
         }
 
         return $this->render('BrowserCreativeCrudBundle:CrudItem:update.html.twig', array(

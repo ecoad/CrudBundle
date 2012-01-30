@@ -5,6 +5,7 @@ namespace BrowserCreative\CrudBundle\Entity;
 use Hub\UserBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use \Datetime;
 
 /**
@@ -77,22 +78,22 @@ class CrudItem
     /**
      * @ORM\Column(name="image_path", type="string", nullable=true)
      */
-    public $imagePath;
+    public $image_path;
 
     /**
      * @Assert\File(maxSize="6000000")
      */
-    public $imageFile;
+    protected $image_file;
 
     /**
      * @ORM\Column(name="attachment_path", type="string", nullable=true)
      */
-    public $attachmentPath;
+    public $attachment_path;
 
     /**
      * @Assert\File(maxSize="6000000")
      */
-    public $attachmentFile;
+    public $attachment_file;
 
     public function __construct()
     {
@@ -215,7 +216,7 @@ class CrudItem
      *
      * @param Datetime $start_date
      */
-    public function setStartDate(DateTime $start_date)
+    public function setStartDate(DateTime $start_date = null)
     {
         $this->start_date = $start_date;
     }
@@ -235,7 +236,7 @@ class CrudItem
      *
      * @param Datetime $end_date
      */
-    public function setEndDate(DateTime $end_date)
+    public function setEndDate(DateTime $end_date = null)
     {
         $this->end_date = $end_date;
     }
@@ -263,7 +264,7 @@ class CrudItem
     /**
      * Get image_path
      *
-     * @return boolean 
+     * @return string 
      */
     public function getImagePath()
     {
@@ -283,10 +284,31 @@ class CrudItem
     /**
      * Get attachment_path
      *
-     * @return boolean 
+     * @return string
      */
     public function getAttachmentPath()
     {
         return $this->attachment_path;
     }
+
+    /**
+     * Get image_file
+     *
+     * @return UploadedFile 
+     */
+    public function getImageFile()
+    {
+        return $this->image_file;
+    }
+
+    /**
+     * Set image_file
+     *
+     * @param UploadedFile $image_file
+     */
+    public function setImageFile(UploadedFile $image_file)
+    {
+        $this->image_file = $image_file;
+    }
+
 }
