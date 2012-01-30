@@ -5,8 +5,8 @@ namespace BrowserCreative\CrudBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Hub\NewsItem\Entity\CrudItem;
-use Hub\NewsItem\Form\Type\CrudItemType;
+use BrowserCreative\CrudItem\Entity\CrudItem;
+use BrowserCreative\CrudItem\Form\Type\CrudItemType;
 
 class CrudItemController extends Controller
 {
@@ -38,6 +38,12 @@ class CrudItemController extends Controller
         ));
     }
 
+    /**
+     * Edit or create an item
+     * 
+     * @param  integer $itemId
+     * @return mixed RedirectResponse or Render
+     */
     public function updateAction($itemId = null)
     {
         if (!$user = $this->container->get('security.context')->getToken()->getUser()) {

@@ -3,6 +3,13 @@
 {% block pageTitle %}Index{% endblock %}
 
 {% block content %}
+	{% if app.security.isGranted('ROLE_ADMIN') %}
+		<div class="item-controls">
+			<a href="{{ path('BrowserCreativeCrudBundle_CrudItem_new') }}" title="Create a new item">
+				Create new item
+			</a>
+		</div>
+	{% endif %}
 	<ul>
 		{% for item in items %}
 			<li>
