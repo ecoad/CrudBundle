@@ -1,4 +1,4 @@
-{% extends "::base.html.twig" %}
+{% extends "HubSiteBundle:Site:base.html.twig" %}
 
 {% block pageTitle %}Index{% endblock %}
 
@@ -24,9 +24,11 @@
 				{% endif %}
 				{{ item.body | raw }}
 			</li>
+		{% else %}
+			<li>No items to display</li>
 		{% endfor %}
 	</ul>
 	<div class="pagination">
-		{{ internalNews.render() | raw }}
+		{{ items.render() | raw }}
 	</div>
 {% endblock %}

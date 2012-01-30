@@ -15,9 +15,9 @@ class CrudItemRepository extends EntityRepository
     public function getLatestActiveItems()
     {
         $queryBuilder = $this->createQueryBuilder('c')
-            ->add('where', 'c.active :active')
+            ->add('where', 'c.visible = :visible')
             ->add('orderBy', 'c.date_created DESC')
-            ->setParameter(':active', true);
+            ->setParameter('visible', true);
 
         return $queryBuilder;
     }

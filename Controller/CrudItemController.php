@@ -13,7 +13,7 @@ class CrudItemController extends Controller
     public function indexAction()
     {
         $items = $this->get('doctrine.orm.entity_manager')->getRepository('BrowserCreativeCrudBundle:CrudItem')
-            ->getLatestActive();
+            ->getLatestActiveItems();
 
         $paginator = $this->get('knp_paginator');
         $pageLength = 20;
