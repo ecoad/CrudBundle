@@ -19,8 +19,8 @@ If you answered yes... then stop re-writing everything over and over! Start your
 *    Coming soon: Command line installation
 
 ### Setup
-* e.g. new bundle is named Gallery and namespace is Hub
-* Copy CrudBundle to src/Hub/GalleryBundle
+* e.g. new bundle is named <code>Gallery</code> and namespace is <code>Hub</code>
+* Move <code>CrudBundle</code> to <code>src/Hub/GalleryBundle</code>
 * Rename these files:
 
         BrowserCreativeCrudBundle.php => HubGalleryBundle.php
