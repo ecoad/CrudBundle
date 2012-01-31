@@ -8,6 +8,24 @@
     <a href="{{ path('BrowserCreativeCrudBundle_CrudItem_index') }}">Back to the list</a>
     <h2>{{ internalTitle }}</h2>
     {{ item.body | raw }}
+    <ul>
+        <li>
+            Current image:
+            {% if item.imagePath != '' %}
+                <img src='{{ getFileUploadWebPath(item.imagePath) | apply_filter('profile_edit') }}' alt="Image"/> <br />
+            {% else %}
+                None
+            {% endif %}
+        </li>
+        <li>
+            Current attachment:
+            {% if item.attachmentPath != '' %}
+                <a href='{{ getFileUploadWebPath(item.attachmentPath) }}' title="Attachment">Attachment</a> <br />
+            {% else %}
+                None
+            {% endif %}
+        </li>
+    </ul>
 
     {% if app.security.isGranted('ROLE_ADMIN') %}
         <a href="{{ path('BrowserCreativeCrudBundle_CrudItem_edit', {'itemId': item.id}) }}">Edit</a>

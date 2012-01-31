@@ -6,7 +6,7 @@ use Hub\UserBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use \Datetime;
+use \DateTime;
 
 /**
  * BrowserCreative\CrudBundle\Entity\CrudItem
@@ -40,7 +40,7 @@ class CrudItem
     private $body;
 
     /**
-     * @var datetimetz $date_created
+     * @var DateTime $date_created
      *
      * @ORM\Column(name="date_created", type="datetimetz")
      */
@@ -62,14 +62,14 @@ class CrudItem
     private $active;
 
     /**
-     * @var datetimetz $start_date
+     * @var DateTime $start_date
      *
      * @ORM\Column(name="start_date", type="datetimetz", nullable=true)
      */
     private $start_date;
 
     /**
-     * @var datetimetz $end_date
+     * @var DateTime $end_date
      *
      * @ORM\Column(name="end_date", type="datetimetz", nullable=true)
      */
