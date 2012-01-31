@@ -23,31 +23,32 @@ If you answered yes... then stop re-writing everything over and over! Start your
 * Copy CrudBundle to src/Hub/GalleryBundle
 * Rename these files:
 
-    BrowserCreativeCrudBundle.php => HubGalleryBundle.php
-    Controller/CrudItemController.php => Controller/GalleryItemController.php
-    DataFixtures/ORM/CrudData.php => DataFixtures/ORM/GalleryData.php
-    DependencyInjection/BrowserCreativeCrudExtension.php => DependencyInjection/HubGalleryExtension.php
-    Entity/CrudItem.php => Entity/GalleryItem.php
-    Entity/CrudItemRepository.php => Entity/GalleryItemRepository.php
-    Form/Type/CrudItemType.php => Form/Type/GalleryItemType.php
-    Resources/views/CrudItem => Resources/views/GalleryItem
-    Service/CrudProvider.php => Service/GalleryProvider.php
+        BrowserCreativeCrudBundle.php => HubGalleryBundle.php
+        Controller/CrudItemController.php => Controller/GalleryItemController.php
+        DataFixtures/ORM/CrudData.php => DataFixtures/ORM/GalleryData.php
+        DependencyInjection/BrowserCreativeCrudExtension.php => DependencyInjection/HubGalleryExtension.php
+        Entity/CrudItem.php => Entity/GalleryItem.php
+        Entity/CrudItemRepository.php => Entity/GalleryItemRepository.php
+        Form/Type/CrudItemType.php => Form/Type/GalleryItemType.php
+        Resources/views/CrudItem => Resources/views/GalleryItem
+        Service/CrudProvider.php => Service/GalleryProvider.php
 
-* Delete .gitignore
+* Delete <code>.gitignore</code>
+
 * Search and replace in file:
 
-    crud => gallery
-    Crud => Gallery
-    BrowserCreative => Hub
-    browsercreative => hub
+        crud => gallery
+        Crud => Gallery
+        BrowserCreative => Hub
+        browsercreative => hub
 
 * Register your new bundle:
 
-    // app/AppKernel.php
-    public function registerBundles()
-    {
-        return array(
-            // ...
-            new Hub\GalleryBundle\HubGalleryBundle(),
-        );
-    }
+        // app/AppKernel.php
+        public function registerBundles()
+        {
+            return array(
+                // ...
+                new Hub\GalleryBundle\HubGalleryBundle(),
+            );
+        }
