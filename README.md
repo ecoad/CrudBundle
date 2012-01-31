@@ -22,6 +22,7 @@ If you answered yes... then stop re-writing everything over and over! Start your
 * e.g. new bundle is named Gallery and namespace is Hub
 * Copy CrudBundle to src/Hub/GalleryBundle
 * Rename these files:
+
     BrowserCreativeCrudBundle.php => HubGalleryBundle.php
     Controller/CrudItemController.php => Controller/GalleryItemController.php
     DataFixtures/ORM/CrudData.php => DataFixtures/ORM/GalleryData.php
@@ -33,14 +34,15 @@ If you answered yes... then stop re-writing everything over and over! Start your
     Service/CrudProvider.php => Service/GalleryProvider.php
 
 * Delete .gitignore
-
 * Search and replace in file:
+
     crud => gallery
     Crud => Gallery
     BrowserCreative => Hub
     browsercreative => hub
 
 * Register your new bundle:
+
     // app/AppKernel.php
     public function registerBundles()
     {
