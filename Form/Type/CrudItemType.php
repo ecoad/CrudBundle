@@ -25,6 +25,6 @@ class CrudItemType extends AbstractType
 
     public function getName()
     {
-        return 'crud';
+        return 'crud_item';
     }
 }
