@@ -10,7 +10,7 @@ Do your bundles start life with the following?:
 If you answered yes... then stop re-writing everything over and over! Start your bundle's life with the CrudBundle
 
 ## Requirements
-*    Symfony 2 (tested with versions 2.0.3 >= 2.0.9
+*    Symfony 2 (tested with versions 2.0.3 >= 2.0.10
 *    KnpPaginator (low dependency, minor refactory)
 *    AvalancheImagineBundle (low dependency, minor refactor)
 
