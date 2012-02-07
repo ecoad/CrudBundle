@@ -6,6 +6,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Hub\UserBundle\Entity\User;
 use BrowserCreative\CrudBundle\Entity\CrudItem;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadNewsData implements FixtureInterface, ContainerAwareInterface {
     private $container;
@@ -15,7 +16,7 @@ class LoadNewsData implements FixtureInterface, ContainerAwareInterface {
         $this->container = $container;
     }
 
-    public function load($manager)
+    public function load(ObjectManager $manager)
     {
         $userProvider = $this->container->get('user.provider');
         $user = $userProvider->loadUserByUsername('elliotcoad');
