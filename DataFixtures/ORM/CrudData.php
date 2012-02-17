@@ -19,7 +19,7 @@ class LoadNewsData implements FixtureInterface, ContainerAwareInterface {
     public function load(ObjectManager $manager)
     {
         $userProvider = $this->container->get('user.provider');
-        $user = $userProvider->loadUserByUsername('elliotcoad');
+        $user = $userProvider->loadUserByUsername('Elliot Coad');
 
         for ($i = 0; $i < 30; $i++) {
             $item = new CrudItem();
