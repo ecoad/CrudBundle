@@ -81,7 +81,7 @@ class CrudItem
     public $image_path;
 
     /**
-     * @Assert\File(maxSize="6000000")
+     * @Assert\Image(maxSize="10M")
      */
     protected $image_file;
 
@@ -91,7 +91,7 @@ class CrudItem
     public $attachment_path;
 
     /**
-     * @Assert\File(maxSize="6000000")
+     * @Assert\File(maxSize="100M")
      */
     public $attachment_file;
 
